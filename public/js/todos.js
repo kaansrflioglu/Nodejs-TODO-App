@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:1111/todos";
+const API_URL = "http://localhost:5000/todos";
 
 async function fetchTasks() {
     try {
@@ -82,6 +82,30 @@ async function deleteAllTasks() {
     }
 }
 
+function filterTasks(filter) {
+    renderTasks(filter);
+}
+
+function openEditModal(id, currentText) {
+    const newText = prompt("Edit your task:", currentText);
+    if (newText !== null) {
+        updateTask(id, newText);
+    }
+}
+
+async function updateTask(id, newText) {
+    try {
+        await fetch(`${API_URL}/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ context: newText })
+        });
+        fetchTasks();
+    } catch (error) {
+        console.error("Error updating task:", error);
+    }
+}
+
 function renderTasks(filter = "all") {
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
@@ -97,11 +121,10 @@ function renderTasks(filter = "all") {
         taskText.innerHTML = task.isCompleted ? `<s>${task.context}</s>` : task.context;
 
         const actions = document.createElement("div");
-        actions.innerHTML = `
-            <input type="checkbox" ${task.isCompleted ? "checked" : ""} onclick="toggleTask(${task.id}, ${task.isCompleted})" class="me-2">
-            <button class="btn btn-warning btn-sm me-2">✏️</button>
-            <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">🗑️</button>
-        `;
+        actions.innerHTML = 
+            `<input type="checkbox" ${task.isCompleted ? "checked" : ""} onclick="toggleTask('${task.id}', ${task.isCompleted})" class="me-2">
+            <button class="btn btn-warning btn-sm me-2" onclick="openEditModal('${task.id}', '${task.context}')">✏️</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteTask('${task.id}')">🗑️</button>`;
 
         li.appendChild(taskText);
         li.appendChild(actions);
@@ -110,5 +133,3 @@ function renderTasks(filter = "all") {
 }
 
 fetchTasks();
-
-        
