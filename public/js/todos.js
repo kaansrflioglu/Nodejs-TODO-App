@@ -10,14 +10,14 @@ async function fetchTasks() {
     }
 }
 
-document.getElementById("taskInput").addEventListener("keydown", async function(event) {
+document.getElementById("taskInput").addEventListener("keydown", async function (event) {
     if (event.key === "Enter") {
-      event.preventDefault();
-      await addTask();
+        event.preventDefault();
+        await addTask();
     }
-  });
+});
 
-  async function addTask() {
+async function addTask() {
     const taskInput = document.getElementById("taskInput");
     if (taskInput.value.trim() === "") return;
 
@@ -37,7 +37,7 @@ document.getElementById("taskInput").addEventListener("keydown", async function(
     } catch (error) {
         console.error("Error adding task:", error);
     }
-  }
+}
 
 async function toggleTask(id, isCompleted) {
     try {
@@ -94,11 +94,58 @@ function filterTasks(filter) {
 }
 
 function openEditModal(id, currentText) {
-    const newText = prompt("Edit your task:", currentText);
-    if (newText !== null) {
-        updateTask(id, newText);
-    }
+    const listItem = document.querySelector(`[data-task-id="${id}"]`);
+    
+    if (!listItem) return;
+
+    const existingEditBox = document.querySelector(".edit-box");
+    if (existingEditBox) existingEditBox.remove();
+
+    listItem.querySelectorAll(".task-actions").forEach(el => el.style.display = "none");
+
+    const editBox = document.createElement("form");
+    editBox.className = "edit-box";
+    editBox.innerHTML = `
+        <textarea class="form-control form-control-sm" id="editInput" style="resize: none; height: 80px;">${currentText}</textarea>
+        <div class="d-flex mt-2">
+            <button type="submit" class="btn btn-success btn-sm flex-fill me-1">💾 Save</button>
+            <button type="button" class="btn btn-secondary btn-sm flex-fill" onclick="cancelEdit('${id}')">❌ Cancel</button>
+        </div>
+    `;
+
+    editBox.addEventListener("submit", function (event) {
+        event.preventDefault(); 
+        saveEdit(id);
+    });
+
+    listItem.appendChild(editBox);
+    document.getElementById("editInput").focus();
 }
+
+
+
+function saveEdit(id) {
+    const newText = document.getElementById("editInput").value.trim();
+    if (newText === "") return;
+
+    updateTask(id, newText);
+    restoreTaskItem(id);
+}
+
+function cancelEdit(id) {
+    restoreTaskItem(id);
+}
+
+function restoreTaskItem(id) {
+    const listItem = document.querySelector(`[data-task-id="${id}"]`);
+    if (!listItem) return;
+    const editBox = listItem.querySelector(".edit-box");
+    if (editBox) editBox.remove();
+    listItem.querySelectorAll(".task-actions").forEach(el => el.style.display = "inline");
+}
+
+
+
 
 async function updateTask(id, newText) {
     try {
@@ -123,20 +170,25 @@ function renderTasks(filter = "all") {
 
         const li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.setAttribute("data-task-id", task.id); 
 
         const taskText = document.createElement("span");
         taskText.innerHTML = task.isCompleted ? `<s>${task.context}</s>` : task.context;
 
         const actions = document.createElement("div");
-        actions.innerHTML = 
-            `<input type="checkbox" ${task.isCompleted ? "checked" : ""} onclick="toggleTask('${task.id}', ${task.isCompleted})" class="me-2">
-            <button class="btn btn-warning btn-sm me-2" onclick="openEditModal('${task.id}', '${task.context}')">✏️</button>
-            <button class="btn btn-danger btn-sm" onclick="deleteTask('${task.id}')">🗑️</button>`;
+        actions.className = "task-actions";
+        actions.innerHTML =
+            `
+                <input type="checkbox" ${task.isCompleted ? "checked" : ""} onclick="toggleTask('${task.id}', ${task.isCompleted})" class="me-2">
+                <button class="btn btn-warning btn-sm me-2" onclick="openEditModal('${task.id}', '${task.context}')">✏️</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteTask('${task.id}')">🗑️</button>
+            `;
 
         li.appendChild(taskText);
         li.appendChild(actions);
         taskList.appendChild(li);
     });
 }
+
 
 fetchTasks();

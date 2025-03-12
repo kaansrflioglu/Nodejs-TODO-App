@@ -11,14 +11,14 @@
     
     <main id="main" class="p-5">
             <div class="container">
-                <h2 class="text-center">TodoInput</h2>
+                <h2 class="text-center mb-3">TODO</h2>
                 <div class="input-group mb-3">
                     <span class="input-group-text">📄</span>
                     <input type="text" id="taskInput" class="form-control" placeholder="New Todo">
-                    <button class="btn btn-primary" onclick="addTask()">Add new task</button>
+                    <span class="input-group-text"><button class="btn" style="background-color: aquamarine;" onclick="addTask()">✍️</button></span>
                 </div>
                 
-                <h2 class="text-center">TodoList</h2>
+                <h2 class="text-center m-3">TODO List</h2>
                 <div class="d-flex justify-content-center mb-3">
                     <button class="btn btn-info me-2" onclick="filterTasks('all')">All</button>
                     <button class="btn btn-info me-2" onclick="filterTasks('done')">Done</button>
@@ -28,8 +28,8 @@
                 <ul id="taskList" class="list-group"></ul>
                 
                 <div class="d-flex justify-content-between mt-3">
-                    <button class="btn btn-danger" onclick="deleteDoneTasks()">Delete done tasks</button>
-                    <button class="btn btn-danger" onclick="deleteAllTasks()">Delete all tasks</button>
+                    <button class="btn btn-danger" onclick="deleteDoneTasks()">Delete Done Tasks</button>
+                    <button class="btn btn-danger" onclick="deleteAllTasks()">Delete All Tasks</button>
                 </div>
             </div>
         
