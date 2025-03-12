@@ -108,8 +108,8 @@ function openEditModal(id, currentText) {
     editBox.innerHTML = `
         <textarea class="form-control form-control-sm" id="editInput" style="resize: none; height: 80px;">${currentText}</textarea>
         <div class="d-flex mt-2">
-            <button type="submit" class="btn btn-success btn-sm flex-fill me-1">💾 Save</button>
-            <button type="button" class="btn btn-secondary btn-sm flex-fill" onclick="cancelEdit('${id}')">❌ Cancel</button>
+            <button type="submit" class="btn btn-sm flex-fill me-1">💾 Save</button>
+            <button type="button" class="btn btn-sm flex-fill" onclick="cancelEdit('${id}')">❌ Cancel</button>
         </div>
     `;
 
@@ -180,8 +180,8 @@ function renderTasks(filter = "all") {
         actions.innerHTML =
             `
                 <input type="checkbox" ${task.isCompleted ? "checked" : ""} onclick="toggleTask('${task.id}', ${task.isCompleted})" class="me-2">
-                <button class="btn btn-warning btn-sm me-2" onclick="openEditModal('${task.id}', '${task.context}')">✏️</button>
-                <button class="btn btn-danger btn-sm" onclick="deleteTask('${task.id}')">🗑️</button>
+                <button class="btn btn-sm" onclick="openEditModal('${task.id}', '${task.context}')">✏️</button>
+                <button class="btn btn-sm" onclick="deleteTask('${task.id}')">🗑️</button>
             `;
 
         li.appendChild(taskText);

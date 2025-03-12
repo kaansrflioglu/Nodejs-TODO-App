@@ -12,13 +12,12 @@
     <main id="main" class="p-5">
             <div class="container">
                 <h2 class="text-center mb-3">TODO</h2>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" style="height: 50px;">
                     <span class="input-group-text">📄</span>
                     <input type="text" id="taskInput" class="form-control" placeholder="New Todo">
-                    <span class="input-group-text"><button class="btn" style="background-color: aquamarine;" onclick="addTask()">✍️</button></span>
                 </div>
                 
-                <h2 class="text-center m-3">TODO List</h2>
+                <h2 class="text-center">TODO List</h2>
                 <div class="d-flex justify-content-center mb-3">
                     <button class="btn btn-info me-2" onclick="filterTasks('all')">All</button>
                     <button class="btn btn-info me-2" onclick="filterTasks('done')">Done</button>
