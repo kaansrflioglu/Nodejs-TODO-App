@@ -4,8 +4,10 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const app = express();
-const todosRouter = require("./routes/todos");
 const cors = require("cors");
+
+const todosRouter = require("./routes/todos");
+const getLocalIP = require('./utils/network');
 
 
 app.set("view engine", "ejs");
@@ -29,18 +31,6 @@ app.get('/about', (req, res) => {
     });
 });
 
-function getLocalIP() {
-    const interfaces = os.networkInterfaces();
-    for (const interfaceName in interfaces) {
-        const interfaceInfo = interfaces[interfaceName];
-        for (const iface of interfaceInfo) {
-            if (iface.family === 'IPv4' && !iface.internal) {
-                return iface.address;
-            }
-        }
-    }
-    return '0.0.0.0';
-}
 
 const PORT = 1111;
 

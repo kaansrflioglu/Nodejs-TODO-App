@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-const API_URL = "http://localhost:5000/todos";
+const getLocalIP = require('../utils/network');
+const API_URL = `http://${getLocalIP}:5000/todos`;
 
 router.get("/", async (req, res) => {
     try {

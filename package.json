@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "json-server": "json-server --watch db.json --port 5000"
+    "json-server": "json-server --watch utils/db.json --port 5000 --host 0.0.0.0"
   },
   "repository": {
     "type": "git",

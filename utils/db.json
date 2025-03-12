@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": "e81e",
+      "context": "Demo context 1",
+      "isCompleted": false
+    },
+    {
+      "id": "74f5",
+      "context": "Demo context 2",
+      "isCompleted": false
+    },
+    {
+      "id": "463c",
+      "context": "Demo context 3",
+      "isCompleted": true
+    }
+  ]
+}

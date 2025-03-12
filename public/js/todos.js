@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/todos";
+const API_URL = `http://${window.location.hostname}:5000/todos`;
 
 async function fetchTasks() {
     try {
@@ -10,7 +10,14 @@ async function fetchTasks() {
     }
 }
 
-async function addTask() {
+document.getElementById("taskInput").addEventListener("keydown", async function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      await addTask();
+    }
+  });
+
+  async function addTask() {
     const taskInput = document.getElementById("taskInput");
     if (taskInput.value.trim() === "") return;
 
@@ -30,7 +37,7 @@ async function addTask() {
     } catch (error) {
         console.error("Error adding task:", error);
     }
-}
+  }
 
 async function toggleTask(id, isCompleted) {
     try {
