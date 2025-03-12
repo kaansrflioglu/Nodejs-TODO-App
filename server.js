@@ -4,6 +4,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const app = express();
+const todosRouter = require("./routes/todos");
+const cors = require("cors");
 
 
 app.set("view engine", "ejs");
@@ -12,7 +14,8 @@ app.use(express.static(path.join(__dirname, "./public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.use(cors());
+app.use("/todos", todosRouter);
 
 app.get("/", (req, res) => {
     res.render("home", {
