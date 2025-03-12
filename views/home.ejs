@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="tr">
+<%- include("partials/head") %>
+
+<body class="d-flex flex-column min-vh-100">
+
+    
+    <%- include("partials/navbar") %>
+    
+    <noscript>This website does not support javascript.</noscript>
+    
+    <main id="main" class="p-5">
+            <div class="container">
+                <h2 class="text-center">TodoInput</h2>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">📄</span>
+                    <input type="text" id="taskInput" class="form-control" placeholder="New Todo">
+                    <button class="btn btn-primary" onclick="addTask()">Add new task</button>
+                </div>
+                
+                <h2 class="text-center">TodoList</h2>
+                <div class="d-flex justify-content-center mb-3">
+                    <button class="btn btn-info me-2" onclick="filterTasks('all')">All</button>
+                    <button class="btn btn-info me-2" onclick="filterTasks('done')">Done</button>
+                    <button class="btn btn-info" onclick="filterTasks('todo')">Todo</button>
+                </div>
+                
+                <ul id="taskList" class="list-group"></ul>
+                
+                <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-danger" onclick="deleteDoneTasks()">Delete done tasks</button>
+                    <button class="btn btn-danger" onclick="deleteAllTasks()">Delete all tasks</button>
+                </div>
+            </div>
+        
+            
+    </main>
+    
+    <%- include("partials/footer") %>
+    <%- include("partials/scripts") %>
+    <script src="js/todos.js"></script>
+
+</body>
+
+</html>

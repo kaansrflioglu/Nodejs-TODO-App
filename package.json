@@ -1,0 +1,40 @@
+{
+  "name": "nodejs-todo-app",
+  "version": "1.0.0",
+  "description": "Simple TODO App With Nodejs",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "json-server": "json-server --watch db.json --port 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaansrflioglu/Nodejs-TODO-App.git"
+  },
+  "keywords": [
+    "Html5",
+    "Css3",
+    "Js",
+    "NodeJS",
+    "Express",
+    "JS",
+    "Bootstrap5",
+    "EJS"
+  ],
+  "author": "kaansrflioglu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaansrflioglu/Nodejs-TODO-App/issues"
+  },
+  "homepage": "https://github.com/kaansrflioglu/Nodejs-TODO-App#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "json-server": "^1.0.0-beta.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
