@@ -2,22 +2,67 @@
 <html lang="tr">
 <%- include("partials/head") %>
 
-<body class="d-flex flex-column min-vh-100">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
 
-    
-    <%- include("partials/navbar") %>
-    
-    <noscript>This website does not support javascript.</noscript>
+        .profile-img {
+            display: block;
+            margin: auto;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+    </style>
 
-    <main id="main">
-        <div class="container">
-            güncellenecek
-        </div>
-    </main>
+    <body class="d-flex flex-column min-vh-100">
 
-    <%- include("partials/footer") %>
-    <%- include("partials/scripts") %>
 
-</body>
+        <%- include("partials/navbar") %>
+
+            <noscript>This website does not support javascript.</noscript>
+
+            <main id="main">
+                <div class="container text-center mt-5">
+                    <div class="card shadow p-4" style="max-width: 600px; margin: auto;">
+                        <img src="https://kaansrflioglu.github.io/assets/images/avatar.jpg" alt="Profile Picture"
+                            class="profile-img mb-3">
+                        <h2 class="fw-bold">Kaan Şereflioğlu</h2>
+                        <p class="text-muted">Computer Engineer | Software Developer | Instructor</p>
+                        <p style="text-align: justify;">
+                            As a computer engineer, I closely follow the latest trends in computer science and software
+                            development with an innovative and passionate approach. I am constantly striving to learn
+                            about advancements in this field. I continuously educate myself to enhance my creativity and
+                            problem-solving skills, and I am highly enthusiastic about exploring and utilizing new
+                            technologies. With my advanced analytical thinking skills, I progress with determination to
+                            achieve the best results in my projects and R&D efforts.
+                        </p>
+                        <div class="d-grid gap-2" style="grid-template-columns: repeat(2, 1fr);">
+                            <a href="mailto:kaansereflioglu@hotmail.com" class="btn btn-outline-secondary">
+                                <i class="fas fa-envelope"></i> Contact
+                            </a>
+                            <a href="https://github.com/kaansrflioglu" target="_blank" class="btn btn-dark">
+                                <i class="fab fa-github"></i> Github
+                            </a>
+                        </div>
+                        <div class="d-grid gap-2 mt-2" style="grid-template-columns: repeat(2, 1fr);">
+                            <a href="https://linkedin.com/in/kaansereflioglu" target="_blank" class="btn btn-primary">
+                                <i class="fab fa-linkedin"></i> Linkedin
+                            </a>
+                            <a href="https://kaansrflioglu.github.io/assets/download/CV.pdf" target="_blank" class="btn btn-success">
+                                <i class="fas fa-file-alt"></i> CV
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </main>
+
+            <%- include("partials/footer") %>
+                <%- include("partials/scripts") %>
+
+    </body>
 
 </html>
